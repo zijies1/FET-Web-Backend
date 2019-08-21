@@ -11,5 +11,14 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 def hellof():
 	return "hello"
 
+@app.route('/api/v1/test', methods=['POST'])
+def test():
+    print(request)
+    print(request.is_json)
+    if not request.json:
+        print("error")
+    return "hello"
+
 if __name__ == '__main__':
-	app.run(host='0.0.0.0')
+	# app.run(host='0.0.0.0')
+	app.run()
