@@ -20,18 +20,18 @@ def toXml(data_list, attributes, values_dic, parentName, parentXml):
 
 
 def activityToXml(data_list, parentXml):
-    mutltiple_attributes = ["Activity_Tag", "Students", "Teachers"]
+    mutltiple_attributes = ["Activity_Tag", "Students", "Teacher"]
     child_attributes = ["Duration","Id", "Active", "Comments"]
     parent_attributes = ["Subject", "TotalDuration", "Activity_Group_Id"]
     mutltiple_attributes_dic = {
         "Activity_Tag": "tags",
         "Students": "students",
-        "Teachers": "teachers",
+        "Teacher": "teachers",
     }
     mutltiple_attributes_dic2 = {
         "Activity_Tag": "tag",
         "Students": "students",
-        "Teachers": "teacher",
+        "Teacher": "teacher",
     }
     child_attributes_dic = {
         "Duration": "duration",
