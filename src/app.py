@@ -19,6 +19,7 @@ def test():
         return("error")
 
     data = request.json
+    print(data)
     f = "./test.xml"
     root = xml.Element("fet")
     children_dic = {
@@ -82,9 +83,9 @@ def test():
           children_dic["Teachers_List"])
 
 	# Students_List
-    toXml(data["years"]["data"],
+    toXml(data["students"]["data"],
           ["Name", "Number_of_students", "Comments"],
-          { "Name": "year", "Number_of_students": "number"},
+          { "Name": "students", "Number_of_students": "number"},
           "Year",
           children_dic["Students_List"])
 
@@ -103,35 +104,13 @@ def test():
           children_dic["Rooms_List"])
 
 	#  Activities_List
-    # toXml(data["activities"]["data"],
-    #       ["Teacher",
-	# 	   "Subject",
-	# 	   "Activity_Tag",
-	# 	   # "Students",
-	# 	   "Duration",
-	# 	   "TotalDuration",
-	# 	   "Id",
-	# 	   "Activity_Group_Id",
-	# 	   "Active",
-	# 	   "Comments"],
-    #       { "Teacher": "teacher",
-	# 	    "Subject": "building",
-	# 	    "Activity_Tag": "tags",
-	# 	    # "Students": "building",
-	# 	    "Duration": "duration",
-	# 	    "TotalDuration": "duration",
-	# 	    "Activity_Tag": "capacity"},
-    #       "Activity",
-    #       children_dic["Activities_List"])
-
-
-
-
+    activityToXml(data["activities"]["data"], children_dic["Activities_List"])
 
     for key, val in children_dic.items():
         root.append(val)
-    # print(root)
 
+    # add compulsory constraints
+    compulsoryXml(root)
     tree = xml.ElementTree(root)
     with open(f, "wb") as fh:
         tree.write(fh)
