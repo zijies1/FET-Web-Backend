@@ -3,7 +3,7 @@ from flask import request, Response
 from flask_cors import CORS
 import xml.etree.ElementTree as xml
 import json
-
+from helper import *
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -61,67 +61,68 @@ def test():
         children_dic["Hours_List"].append(item)
 
 	# Subjects_List
-    for val in data["subjects"]["data"]:
-        name = xml.Element("Name")
-        comment = xml.Element("Comments")
-        name.text = val["subject"]
-        item = xml.Element("Subject")
-        item.append(name)
-        item.append(comment)
-        children_dic["Subjects_List"].append(item)
+    toXml(data["subjects"]["data"],
+          ["Name", "Comments"],
+          { "Name": "subject"},
+          "Subject",
+          children_dic["Subjects_List"])
 
 	# Activity_Tags_List
-    for val in data["tags"]["data"]:
-        name = xml.Element("Name")
-        printable = xml.Element("Printable")
-        comment = xml.Element("Comments")
-        name.text = val["tag"]
-        printable.text = "true"
-        item = xml.Element("Activity_Tag")
-        item.append(name)
-        item.append(printable)
-        item.append(comment)
-        children_dic["Activity_Tags_List"].append(item)
+    toXml(data["tags"]["data"],
+          ["Name", "Printable", "Comments"],
+          { "Name": "tag"},
+          "Activity_Tag",
+          children_dic["Activity_Tags_List"])
 
-	# Teachers_List
-    for val in data["teachers"]["data"]:
-        name = xml.Element("Name")
-        tagert_number_of_hours = xml.Element("Target_Number_of_Hours")
-        qualified_subjects = xml.Element("Qualified_Subjects")
-        comment = xml.Element("Comments")
-        name.text = val["teacher"]
-        tagert_number_of_hours.text = str(val["targetNumberOfHours"])
-        item = xml.Element("Teacher")
-        item.append(name)
-        item.append(tagert_number_of_hours)
-        item.append(qualified_subjects)
-        item.append(comment)
-        children_dic["Teachers_List"].append(item)
+	#  Teachers_List
+    toXml(data["teachers"]["data"],
+          ["Name", "Target_Number_of_Hours", "Qualified_Subjects", "Comments"],
+          { "Name": "teacher", "Target_Number_of_Hours": "targetNumberOfHours"},
+          "Teacher",
+          children_dic["Teachers_List"])
 
 	# Students_List
-    for val in data["years"]["data"]:
-        name = xml.Element("Name")
-        number_of_students = xml.Element("Number_of_students")
-        comment = xml.Element("Comments")
-        name.text = val["year"]
-        number_of_students.text = str(val["number"])
-        item = xml.Element("Year")
-        item.append(name)
-        item.append(number_of_students)
-        item.append(comment)
-        if "children" in data["years"]["data"]:
-            for val2 in data["years"]["data"]["children"]:
-                group = xml.Element("Group")
-                name = xml.Element("Name")
-                number_of_students = xml.Element("Number_of_students")
-                number_of_students.text = str(val2["number"])
-                comment = xml.Element("Comments")
-                name.text = val2["year"]
-                group.append(name)
-                group.append(number_of_students)
-                group.append(comment)
-                item.append(group)
-        children_dic["Students_List"].append(item)
+    toXml(data["years"]["data"],
+          ["Name", "Number_of_students", "Comments"],
+          { "Name": "year", "Number_of_students": "number"},
+          "Year",
+          children_dic["Students_List"])
+
+	#  Buildings_List
+    toXml(data["buildings"]["data"],
+          ["Name", "Comments"],
+          { "Name": "building" },
+          "Building",
+          children_dic["Buildings_List"])
+
+	#  Rooms_List
+    toXml(data["rooms"]["data"],
+          ["Name", "Building", "Capacity", "Comments"],
+          { "Name": "room", "Building": "building", "Capacity": "capacity"},
+          "Room",
+          children_dic["Rooms_List"])
+
+	#  Activities_List
+    # toXml(data["activities"]["data"],
+    #       ["Teacher",
+	# 	   "Subject",
+	# 	   "Activity_Tag",
+	# 	   # "Students",
+	# 	   "Duration",
+	# 	   "TotalDuration",
+	# 	   "Id",
+	# 	   "Activity_Group_Id",
+	# 	   "Active",
+	# 	   "Comments"],
+    #       { "Teacher": "teacher",
+	# 	    "Subject": "building",
+	# 	    "Activity_Tag": "tags",
+	# 	    # "Students": "building",
+	# 	    "Duration": "duration",
+	# 	    "TotalDuration": "duration",
+	# 	    "Activity_Tag": "capacity"},
+    #       "Activity",
+    #       children_dic["Activities_List"])
 
 
 
