@@ -21,7 +21,7 @@ def test():
     data = request.json
     print(data)
     f = "./test.xml"
-    root = xml.Element("fet")
+    root = xml.Element("fet", attrib={"version":"5.39.0"})
     children_dic = {
         "Institution_Name":xml.Element("Institution_Name"),
         "Comments":xml.Element("Comments"),

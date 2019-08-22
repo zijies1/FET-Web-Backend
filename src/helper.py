@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as xml
 
+# hard coded
 def toSingleXml(data, attributes, values_dic, parentName):
     item = xml.Element(parentName)
     for attribute in attributes:
@@ -18,7 +19,6 @@ def toXml(data_list, attributes, values_dic, parentName, parentXml):
                 item.append(child_item)
         parentXml.append(item)
 
-
 def activityToXml(data_list, parentXml):
     mutltiple_attributes = ["Activity_Tag", "Students", "Teacher"]
     child_attributes = ["Duration","Id", "Active", "Comments"]
@@ -36,6 +36,7 @@ def activityToXml(data_list, parentXml):
     child_attributes_dic = {
         "Duration": "duration",
         "Id": "key",
+        "Active": "active",
     }
     parent_attributes_dic = {
         "Subject": "subject",
