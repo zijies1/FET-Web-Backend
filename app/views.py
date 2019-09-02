@@ -7,7 +7,7 @@ from app import app
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route('/api/test/hello', methods=['GET'])
+@app.route('/', methods=['GET'])
 def hellof():
 	return "hello"
 
