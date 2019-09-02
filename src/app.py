@@ -14,13 +14,13 @@ def hellof():
 
 @app.route('/api/v1/test', methods=['POST'])
 def test():
-    print(request)
+    # print(request)
     if not request.json:
         return("error")
 
     data = request.json
-    print(data)
-    f = "./test.xml"
+    # print(data)
+    f = "./" + data["name"] + ".fet"
     root = xml.Element("fet", attrib={"version":"5.39.0"})
     children_dic = {
         "Institution_Name":xml.Element("Institution_Name"),
