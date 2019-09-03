@@ -3,8 +3,7 @@ from flask_cors import CORS
 import xml.etree.ElementTree as xml
 import json
 from app import app
-import xml.dom.minidom
-
+import os
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -20,7 +19,7 @@ def test():
 
     data = request.json
     # print(data)
-    f = "./" + data["name"] + ".fet"
+    f = "/home/rondo/fet-raw-data/" + data["name"] + ".fet"
     root = xml.Element("fet", attrib={"version":"5.39.0"})
     children_dic = {
         "Institution_Name":xml.Element("Institution_Name"),
@@ -115,8 +114,9 @@ def test():
     with open(f, "wb") as fh:
         tree.write(fh)
 
-	dom = xml.dom.minidom.parse(f) # or xml.dom.minidom.parseString(xml_string)
-	print(dom.toprettyxml())
+
+    # os.system("fet-cl --inputfile="" + f + ' --outputdir=/home/rondo/fet-xml-data/')
+
 
     return "hello"
 
