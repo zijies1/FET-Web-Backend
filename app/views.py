@@ -3,6 +3,8 @@ from flask_cors import CORS
 import xml.etree.ElementTree as xml
 import json
 from app import app
+import xml.dom.minidom
+
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -112,6 +114,9 @@ def test():
     tree = xml.ElementTree(root)
     with open(f, "wb") as fh:
         tree.write(fh)
+
+	dom = xml.dom.minidom.parse(f) # or xml.dom.minidom.parseString(xml_string)
+	print(dom.toprettyxml())
 
     return "hello"
 
