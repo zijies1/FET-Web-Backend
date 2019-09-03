@@ -1,7 +1,12 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7
-RUN apk --update add bash nano
-RUN apk --update add bash tree
-RUN apk add --update fet
+
+FROM ubuntu
+
+RUN apt-get update && apt-get install -y \
+    nano \
+    tree \
+    fet \
+    python3.6
 
 # Set the working directory to /app
 WORKDIR /app
