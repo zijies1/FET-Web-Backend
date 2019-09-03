@@ -9,7 +9,9 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/', methods=['GET'])
 def hellof():
-	return "hello"
+   #print(os.getcwd())
+    print(os.system("tree . "))
+    return "hello"
 
 @app.route('/api/v1/test', methods=['POST'])
 def test():
@@ -19,7 +21,7 @@ def test():
 
     data = request.json
     # print(data)
-    f = "/home/rondo/fet-raw-data/" + data["name"] + ".fet"
+    f =  data["name"] + ".fet"
     root = xml.Element("fet", attrib={"version":"5.39.0"})
     children_dic = {
         "Institution_Name":xml.Element("Institution_Name"),
@@ -115,8 +117,7 @@ def test():
         tree.write(fh)
 
 
-    # os.system("fet-cl --inputfile="" + f + ' --outputdir=/home/rondo/fet-xml-data/')
-
+   # os.system("fet-cl --inputfile="" + f + ' --outputdir=/fet-xml-data/')
 
     return "hello"
 

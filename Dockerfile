@@ -1,5 +1,8 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7
 RUN apk --update add bash nano
+RUN apk --update add bash tree
+RUN apk add --update fet
+
 # Set the working directory to /app
 WORKDIR /app
 
