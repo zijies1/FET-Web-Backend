@@ -1,4 +1,4 @@
-from flask import request, Response
+from flask import request, Response, send_file
 from flask_cors import CORS
 import xml.etree.ElementTree as xml
 import json
@@ -10,8 +10,12 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route('/', methods=['GET'])
 def hellof():
    #print(os.getcwd())
+    #os.system("fet-cl --inputfile=test1.fet")
     print(os.system("tree . "))
-    return "hello"
+    #dir = os.getcwd()
+    #print("currentDir => ")
+    print(os.getcwd())
+    return send_file("../timetables/test1/test1_activities.xml")
 
 @app.route('/api/v1/test', methods=['POST'])
 def test():
@@ -118,8 +122,10 @@ def test():
 
 
    # os.system("fet-cl --inputfile="" + f + ' --outputdir=/fet-xml-data/')
-
-    return "hello"
+    os.system("fet-cl --inputfile=" + f)
+    # bad pratice
+    return send_file("../timetables/" + data["name"] + "/" + data["name"] + "_activities.xml")
+    #return "hello"
 
 # hard coded
 def toSingleXml(data, attributes, values_dic, parentName):

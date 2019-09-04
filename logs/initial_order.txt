@@ -1,0 +1,7 @@
+﻿This is the initial evaluation order of activities computed by FET. If the generation gets stuck after a certain number of activities, please check the activity corresponding to this number+1. You might find errors in your input.
+
+The initial order of activities (id-s):
+
+No: 1, Id: 2, Teachers: teacher1, teacher2, Subject: physics, Activity tags: tag2, Students: 2019 a, 2019b
+No: 2, Id: 3, Teachers: teacher1, teacher2, Subject: physics, Activity tags: tag2, Students: 2019 a, 2019b
+End - the order of activities (id-s)

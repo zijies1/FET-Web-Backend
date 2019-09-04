@@ -1,6 +1,6 @@
 #!/bin/bash
 app="fet-api"
 docker build -t ${app} .
-docker run -d -p 56734:80 \
+docker run -d -p 5000:5000 \
   --name=${app} \
   -v $PWD:/app ${app}
