@@ -4,5 +4,5 @@ The initial order of activities (id-s):
 
 No: 1, Id: 2, Teachers: teacher1, teacher2, Subject: physics, Activity tags: tag2, Students: 2019 a, 2019b
 No: 2, Id: 3, Teachers: teacher1, teacher2, Subject: physics, Activity tags: tag2, Students: 2019 a, 2019b
-No: 3, Id: 5, Teachers: teacher1, Subject: maths, Activity tags: tag1, tag2, Students: 2020
+No: 3, Id: 5, Teachers: teacher2, Subject: maths, Activity tags: tag1, tag2, Students: 2020
 End - the order of activities (id-s)
