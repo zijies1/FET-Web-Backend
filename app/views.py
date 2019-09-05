@@ -121,11 +121,44 @@ def test():
         tree.write(fh)
 
 
-   # os.system("fet-cl --inputfile="" + f + ' --outputdir=/fet-xml-data/')
+   # TODO: check whether this goes well
     os.system("fet-cl --inputfile=" + f)
+    return "ok"
     # bad pratice
-    return send_file("../timetables/" + data["name"] + "/" + data["name"] + "_activities.xml")
+    # return send_file("../timetables/" + data["name"] + "/" + data["name"] + "_activities.xml")
     #return "hello"
+
+@app.route('/timetable/timetableByActivities', methods=['POST'])
+def timetableByActivities():
+    if not request.json:
+        return("error")
+
+    data = request.json
+    id = data["id"]
+    return sendTimetable(id, "activities")
+
+@app.route('/timetable/timetableBySubgroups', methods=['POST'])
+def timetableBySubgroups():
+    if not request.json:
+        return("error")
+
+    data = request.json
+    id = data["id"]
+    return sendTimetable(id, "subgroups")
+
+@app.route('/timetable/timetableByTeachers', methods=['POST'])
+def timetableByTeachers():
+    if not request.json:
+        return("error")
+
+    data = request.json
+    id = data["id"]
+    return sendTimetable(id, "teachers")
+
+################################ HELPER FUNCTIONS ##############################
+
+def sendTimetable(id, type):
+    return send_file("../timetables/" + id  + "/" + id + "_" + type + ".xml")
 
 # hard coded
 def toSingleXml(data, attributes, values_dic, parentName):

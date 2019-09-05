@@ -2,4 +2,3 @@
 
 At time 0 h 0 m 0 s, FET reached 1 activities placed
 At time 0 h 0 m 0 s, FET reached 2 activities placed
-At time 0 h 0 m 0 s, FET reached 3 activities placed
