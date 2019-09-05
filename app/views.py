@@ -159,9 +159,16 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
                 if(not "Subject" in hour):
                     newHour["empty"] = "true"
                 else:
+                    print(hour)
                     newHour["subject"] = hour["Subject"]["@name"]
-                    newHour["activity_tag"] = hour["Activity_Tag"]["@name"]
-                    newHour[unqiueAttributeNew] = [ {"name":x["@name"]} for x in hour[unqiueAttributeOld]]
+                    try:
+                        newHour["activity_tag"] = hour["Activity_Tag"]["@name"]
+                    except TypeError:
+                        newHour["activity_tag"] = [ {"name":x["@name"]} for x in hour["Activity_Tag"]]
+                    try:
+                        newHour[unqiueAttributeNew] = [ {"name":x["@name"]} for x in hour[unqiueAttributeOld]]
+                    except TypeError:
+                        newHour[unqiueAttributeNew] = [ {"name":hour[unqiueAttributeOld]["@name"]}]
                 hours.append(newHour)
             newDay = {
                 "name":day["@name"],
