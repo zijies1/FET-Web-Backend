@@ -26,7 +26,7 @@ def test():
 
     data = request.json
     # print(data)
-    f =  data["name"] + ".fet"
+    f =  data["key"] + ".fet"
     root = xml.Element("fet", attrib={"version":"5.39.0"})
     children_dic = {
         "Institution_Name":xml.Element("Institution_Name"),
@@ -124,35 +124,56 @@ def test():
 
    # TODO: check whether this goes well
     os.system("fet-cl --inputfile=" + f)
-    
-    types = ["activities", "subgroups", "teachers"]
+
+    id = data["key"]
     body = {}
-    id = data["name"]
-    for type in types:
-        f = "./timetables/" + id  + "/" + id + "_" + type + ".xml"
-        with open(f, "r") as fh:
-            # print fh.read()
-            body[type] = bf.data(xml.fromstring(fh.read()))
-    resp = Response(dumps(body), status=200, mimetype='application/json')
- 
+    prefix = "./timetables/" + id  + "/" + id + "_"
+    with open(prefix + "subgroups.xml", "r") as fh:
+        # print fh.read()
+        tmp = bf.data(xml.fromstring(fh.read()))
+        body["subgroups"] = beautifyDays(tmp["Students_Timetable"]["Subgroup"], "teachers", "Teacher")
+        # print(beautifyDays(tmp["Students_Timetable"]["Subgroup"], "teachers", "Teacher"))
+
+    with open(prefix + "teachers.xml", "r") as fh:
+        # print fh.read()
+        tmp = bf.data(xml.fromstring(fh.read()))
+        body["teachers"] = beautifyDays(tmp["Teachers_Timetable"]["Teacher"], "students", "Students")
+        # print(beautifyDays(tmp["Teachers_Timetable"]["Teacher"], "students", "Students"))
+
+    resp = Response(dumps(body), status=200, mimetype='application/json') 
     return resp
     # bad pratice
     # return send_file("../timetables/" + data["name"] + "/" + data["name"] + "_activities.xml")
     #return "hello"
 
-@app.route('/test', methods=['GET'])
-def timetableByType():
-    types = ["activities", "subgroups", "teachers"]
-    id = "test1"
-    for type in types:
-        f = "./timetables/" + id  + "/" + id + "_" + type + ".xml"
-        with open(f, "r") as fh:
-           print(fh.readlines())
-    return "good"
 ################################ HELPER FUNCTIONS ##############################
-
-def sendTimetable(id, type):
-    return send_file("/timetables/" + id  + "/" + id + "_" + type + ".xml")
+def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
+    result = []
+    for subgroup in subgroups:
+        days = []
+        for day in subgroup["Day"]:
+            hours = []
+            for hour in day["Hour"]:
+                newHour = { "name":hour["@name"]}
+                # empty hour
+                if(not "Subject" in hour):
+                    newHour["empty"] = "true"
+                else:
+                    newHour["subject"] = hour["Subject"]["@name"]
+                    newHour["activity_tag"] = hour["Activity_Tag"]["@name"]
+                    newHour[unqiueAttributeNew] = [ {"name":x["@name"]} for x in hour[unqiueAttributeOld]]
+                hours.append(newHour)
+            newDay = {
+                "name":day["@name"],
+                "hours":hours
+            }
+            days.append(newDay)
+        newSubgroup = {
+            "name":subgroup["@name"],
+            "days":days
+        }
+        result.append(newSubgroup)
+    return result
 
 # hard coded
 def toSingleXml(data, attributes, values_dic, parentName):
