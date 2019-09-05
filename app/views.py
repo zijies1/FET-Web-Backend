@@ -1,7 +1,8 @@
 from flask import request, Response, send_file
 from flask_cors import CORS
 import xml.etree.ElementTree as xml
-import json
+from xmljson import badgerfish as bf
+from json import dumps
 from app import app
 import os
 
@@ -123,42 +124,35 @@ def test():
 
    # TODO: check whether this goes well
     os.system("fet-cl --inputfile=" + f)
-    return "ok"
+    
+    types = ["activities", "subgroups", "teachers"]
+    body = {}
+    id = data["name"]
+    for type in types:
+        f = "./timetables/" + id  + "/" + id + "_" + type + ".xml"
+        with open(f, "r") as fh:
+            # print fh.read()
+            body[type] = bf.data(xml.fromstring(fh.read()))
+    resp = Response(dumps(body), status=200, mimetype='application/json')
+ 
+    return resp
     # bad pratice
     # return send_file("../timetables/" + data["name"] + "/" + data["name"] + "_activities.xml")
     #return "hello"
 
-@app.route('/timetable/timetableByActivities', methods=['POST'])
-def timetableByActivities():
-    if not request.json:
-        return("error")
-
-    data = request.json
-    id = data["id"]
-    return sendTimetable(id, "activities")
-
-@app.route('/timetable/timetableBySubgroups', methods=['POST'])
-def timetableBySubgroups():
-    if not request.json:
-        return("error")
-
-    data = request.json
-    id = data["id"]
-    return sendTimetable(id, "subgroups")
-
-@app.route('/timetable/timetableByTeachers', methods=['POST'])
-def timetableByTeachers():
-    if not request.json:
-        return("error")
-
-    data = request.json
-    id = data["id"]
-    return sendTimetable(id, "teachers")
-
+@app.route('/test', methods=['GET'])
+def timetableByType():
+    types = ["activities", "subgroups", "teachers"]
+    id = "test1"
+    for type in types:
+        f = "./timetables/" + id  + "/" + id + "_" + type + ".xml"
+        with open(f, "r") as fh:
+           print(fh.readlines())
+    return "good"
 ################################ HELPER FUNCTIONS ##############################
 
 def sendTimetable(id, type):
-    return send_file("../timetables/" + id  + "/" + id + "_" + type + ".xml")
+    return send_file("/timetables/" + id  + "/" + id + "_" + type + ".xml")
 
 # hard coded
 def toSingleXml(data, attributes, values_dic, parentName):
