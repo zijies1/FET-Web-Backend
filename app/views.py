@@ -2,7 +2,8 @@ from flask import request, Response, send_file
 from flask_cors import CORS
 import xml.etree.ElementTree as xml
 from xmljson import badgerfish as bf
-from json2xml import json2xml, readfromurl, readfromstring, readfromjson
+from json2xml import json2xml, readfromstring
+from json2html import *
 from json import dumps
 from app import app
 import os
@@ -27,6 +28,7 @@ def exportTimetable():
 
     data = request.json
     result = fitOrderToData(data)
+    # print(result)
     id = data["key"]
     filePath = "./finalResult/" + id + "/" + id + "." + data["fileType"]
     if not os.path.exists(os.path.dirname(filePath)):
@@ -40,6 +42,13 @@ def exportTimetable():
         with open(filePath, "w") as fh:
             fh.write(json2xml.Json2xml(jsonData).to_xml())
         fh.close()
+    elif(data["fileType"] == "html"):
+        with open(filePath, "w") as fh:
+            fh.write(json2html.convert(json = fitDataToHtml(result)))
+        fh.close()
+        # print(fitDataToHtml(result))
+        # return "hello"
+
     # print(data)
     return send_file("." + filePath)
 
@@ -207,6 +216,31 @@ def fitOrderToData(json):
     }
     # print(result)
     return result
+
+def fitDataToHtml(json):
+    days = json["days"]
+    numOfHours = len(days[0]["hours"])
+    newData = []
+    for i in range(numOfHours):
+        hourRow = {"hour": days[0]["hours"][i]["name"]}
+        for day in days:
+            if "empty" in day["hours"][i]:
+                hourRow[day["name"]]= "empty"
+            else:
+                str = ""
+                for key, value in day["hours"][i].items():
+                    if not(key == "name"):
+                         if(isinstance(value, list)):
+                             for subVal in value:
+                                 str += (subVal["name"] + " ")
+                         else:
+                             str += (value + " ")
+                hourRow[day["name"]] = str
+        newData.append(hourRow)
+
+    return {
+        json["name"]: newData
+    }
 
 def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
     result = []

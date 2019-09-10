@@ -8,3 +8,4 @@ six==1.12.0
 Werkzeug==0.15.5
 xmljson==0.2.0
 json2xml==3.0.1
+json2html==1.3.0
