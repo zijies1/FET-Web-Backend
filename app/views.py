@@ -37,17 +37,25 @@ def exportTimetable():
         except OSError as exc: # Guard against race condition
             return("error")
 
+    finalData = ""
     if(data["fileType"] == "xml"):
         jsonData = readfromstring(dumps(result))
-        with open(filePath, "w") as fh:
-            fh.write(json2xml.Json2xml(jsonData).to_xml())
-        fh.close()
+        finalData = json2xml.Json2xml(jsonData).to_xml()
     elif(data["fileType"] == "html"):
-        with open(filePath, "w") as fh:
-            fh.write(json2html.convert(json = fitDataToHtml(result)))
-        fh.close()
+        finalData = json2html.convert(json = fitDataToHtml(result))
+
+    with open(filePath, "w") as fh:
+        fh.write(finalData)
+    fh.close()
         # print(fitDataToHtml(result))
         # return "hello"
+
+    # body = {
+    #     "fileType":data["fileType"],
+    #     "name":result["name"],
+    #     "data":finalData
+    # }
+    # resp = Response(dumps(body), status=200, mimetype='application/json')
 
     # print(data)
     return send_file("." + filePath)
@@ -191,24 +199,28 @@ def fitOrderToData(json):
         for hour in day["hours"]:
 
             dataMap[day["name"] + "_" + str(hour["name"])] = hour
-
     orderedDataList = []
+    print(json["order"])
     for key in json["order"]:
         orderedDataList.append(dataMap[key])
 
+    # hourCount = 0
     count = 0
     days = []
+    # numOfDays = len()
     for dayName in dayNames:
         newDay = {}
         newDay["name"] = dayName
         newHours = []
+        # count = 0
         for hourName in hourNames:
-            newHour = orderedDataList[count]
+            newHour = orderedDataList[hourCount*]
             newHour["name"] = hourName
             newHours.append(newHour)
             count += 1
         newDay["hours"] = newHours
         days.append(newDay)
+        # hourCount += 1
 
     result = {
         "days":days,
