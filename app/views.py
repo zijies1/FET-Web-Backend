@@ -28,7 +28,9 @@ def exportTimetable():
 
     data = request.json
     result = fitOrderToData(data)
-    # print(result)
+    # print("\n\n", data, "\n\n", result)
+    # return "hello"
+
     id = data["key"]
     filePath = "./finalResult/" + id + "/" + id + "." + data["fileType"]
     if not os.path.exists(os.path.dirname(filePath)):
@@ -191,36 +193,39 @@ def test():
 ################################ HELPER FUNCTIONS ##############################
 def fitOrderToData(json):
     data = json["data"]
-    dataMap = {}
-    dayNames = [x["name"] for x in data["days"]]
-    hourNames = [x["name"] for x in data["days"][0]["hours"]]
+    # print(data)
     # print(hourNames)
+    dataMap = {}
     for day in data["days"]:
         for hour in day["hours"]:
-
             dataMap[day["name"] + "_" + str(hour["name"])] = hour
+    # print("dataMap => ", dataMap)
     orderedDataList = []
-    print(json["order"])
     for key in json["order"]:
         orderedDataList.append(dataMap[key])
+    # print(orderedDataList)
 
-    # hourCount = 0
+    dayCount = 0
     count = 0
     days = []
-    # numOfDays = len()
+    dayNames = [x["name"] for x in data["days"]]
+    numOfDays = len(dayNames)
+    hourNames = [x["name"] for x in data["days"][0]["hours"]]
+    # print(dayNames, hourNames)
     for dayName in dayNames:
         newDay = {}
         newDay["name"] = dayName
         newHours = []
-        # count = 0
+        count = 0
         for hourName in hourNames:
-            newHour = orderedDataList[count]
+            # print(dayCount + count*numOfDays)
+            newHour = orderedDataList[dayCount + count*numOfDays]
             newHour["name"] = hourName
             newHours.append(newHour)
             count += 1
         newDay["hours"] = newHours
         days.append(newDay)
-        # hourCount += 1
+        dayCount += 1
 
     result = {
         "days":days,
