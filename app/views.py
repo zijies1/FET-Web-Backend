@@ -2,6 +2,7 @@ from flask import request, Response, send_file
 from flask_cors import CORS
 import xml.etree.ElementTree as xml
 from xmljson import badgerfish as bf
+from json2xml import json2xml, readfromurl, readfromstring, readfromjson
 from json import dumps
 from app import app
 import os
@@ -17,6 +18,30 @@ def hellof():
     #print("currentDir => ")
     print(os.getcwd())
     return send_file("../timetables/test1/test1_activities.xml")
+
+@app.route('/api/v1/exportTimetable', methods=['POST'])
+def exportTimetable():
+    # print(request)
+    if not request.json:
+        return("error")
+
+    data = request.json
+    result = fitOrderToData(data)
+    id = data["key"]
+    filePath = "./finalResult/" + id + "/" + id + "." + data["fileType"]
+    if not os.path.exists(os.path.dirname(filePath)):
+        try:
+            os.makedirs(os.path.dirname(filePath))
+        except OSError as exc: # Guard against race condition
+            return("error")
+
+    if(data["fileType"] == "xml"):
+        jsonData = readfromstring(dumps(result))
+        with open(filePath, "w") as fh:
+            fh.write(json2xml.Json2xml(jsonData).to_xml())
+        fh.close()
+    # print(data)
+    return send_file("." + filePath)
 
 @app.route('/api/v1/test', methods=['POST'])
 def test():
@@ -140,13 +165,49 @@ def test():
         body["teachers"] = beautifyDays(tmp["Teachers_Timetable"]["Teacher"], "students", "Students")
         # print(beautifyDays(tmp["Teachers_Timetable"]["Teacher"], "students", "Students"))
 
-    resp = Response(dumps(body), status=200, mimetype='application/json') 
+    resp = Response(dumps(body), status=200, mimetype='application/json')
     return resp
     # bad pratice
     # return send_file("../timetables/" + data["name"] + "/" + data["name"] + "_activities.xml")
     #return "hello"
 
 ################################ HELPER FUNCTIONS ##############################
+def fitOrderToData(json):
+    data = json["data"]
+    dataMap = {}
+    dayNames = [x["name"] for x in data["days"]]
+    hourNames = [x["name"] for x in data["days"][0]["hours"]]
+    # print(hourNames)
+    for day in data["days"]:
+        for hour in day["hours"]:
+
+            dataMap[day["name"] + "_" + str(hour["name"])] = hour
+
+    orderedDataList = []
+    for key in json["order"]:
+        orderedDataList.append(dataMap[key])
+
+    count = 0
+    days = []
+    for dayName in dayNames:
+        newDay = {}
+        newDay["name"] = dayName
+        newHours = []
+        for hourName in hourNames:
+            newHour = orderedDataList[count]
+            newHour["name"] = hourName
+            newHours.append(newHour)
+            count += 1
+        newDay["hours"] = newHours
+        days.append(newDay)
+
+    result = {
+        "days":days,
+        "name":data["name"]
+    }
+    # print(result)
+    return result
+
 def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
     result = []
     for subgroup in subgroups:
