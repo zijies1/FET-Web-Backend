@@ -214,7 +214,7 @@ def fitOrderToData(json):
         newHours = []
         # count = 0
         for hourName in hourNames:
-            newHour = orderedDataList[hourCount*]
+            newHour = orderedDataList[count]
             newHour["name"] = hourName
             newHours.append(newHour)
             count += 1
