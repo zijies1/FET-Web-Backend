@@ -3,3 +3,11 @@
 At time 0 h 0 m 0 s, FET reached 1 activities placed
 At time 0 h 0 m 0 s, FET reached 2 activities placed
 At time 0 h 0 m 0 s, FET reached 3 activities placed
+At time 0 h 0 m 0 s, FET reached 4 activities placed
+At time 0 h 0 m 0 s, FET reached 5 activities placed
+At time 0 h 0 m 0 s, FET reached 6 activities placed
+At time 0 h 0 m 0 s, FET reached 7 activities placed
+At time 0 h 0 m 0 s, FET reached 8 activities placed
+At time 0 h 0 m 0 s, FET reached 9 activities placed
+At time 0 h 0 m 0 s, FET reached 10 activities placed
+At time 0 h 0 m 0 s, FET reached 11 activities placed

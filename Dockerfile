@@ -19,10 +19,12 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 80
 
-# Run app.py when the container launches
-#CMD ["python3", "main.py"]
-
+# fix unicode decode error
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+
+# Run app.py when the container launches
+CMD ["python3", "-u", "main.py"]
+
  
-CMD ["flask", "run", "--host=0.0.0.0"]
+#CMD ["flask", "run", "--host=0.0.0.0", "-u"]
