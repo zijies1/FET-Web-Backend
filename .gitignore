@@ -104,7 +104,7 @@ venv.bak/
 .mypy_cache/
 
 # fet files
-*.fet
+# *.fet
 
 # timetbales
 /timetables
