@@ -239,15 +239,16 @@ def fitDataToHtml(json):
             if "empty" in day["hours"][i]:
                 hourRow[day["name"]]= "empty"
             else:
-                str = ""
+                finalStr = ""
                 for key, value in day["hours"][i].items():
                     if not(key == "name"):
                          if(isinstance(value, list)):
                              for subVal in value:
-                                 str += (subVal["name"] + " ")
+                                 # print(subVal)
+                                 finalStr += (str(subVal["name"]) + " ")
                          else:
-                             str += (value + " ")
-                hourRow[day["name"]] = str
+                             finalStr += (value + " ")
+                hourRow[day["name"]] = finalStr
         newData.append(hourRow)
 
     return {

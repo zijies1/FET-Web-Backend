@@ -1,6 +1,6 @@
 This file contains the result (log) of last operation
 
-FET command line simulation started on 9/10/19 12:36 AM
+FET command line simulation started on 9/12/19 8:13 AM
 
 Starting timetable generation...
 Simulation successful
