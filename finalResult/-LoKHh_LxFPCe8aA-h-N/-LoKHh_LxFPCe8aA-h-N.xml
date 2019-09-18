@@ -1,41 +1,10 @@
 <all>
     <days>
         <hours>
-            <empty>true</empty>
-            <name>8</name>
-        </hours>
-        <hours>
-            <empty>true</empty>
-            <name>9</name>
-        </hours>
-        <hours>
-            <empty>true</empty>
-            <name>10</name>
-        </hours>
-        <hours>
-            <empty>true</empty>
-            <name>11</name>
-        </hours>
-        <hours>
-            <empty>true</empty>
-            <name>12</name>
-        </hours>
-        <hours>
-            <empty>true</empty>
-            <name>13</name>
-        </hours>
-        <name>Monday</name>
-    </days>
-    <days>
-        <hours>
-            <empty>true</empty>
-            <name>8</name>
-        </hours>
-        <hours>
             <activity_tag>
                 <name>tag1</name>
             </activity_tag>
-            <name>9</name>
+            <name>8</name>
             <subject>chemistry</subject>
             <teachers>
                 <name>teacher1</name>
@@ -43,6 +12,10 @@
         </hours>
         <hours>
             <empty>true</empty>
+            <name>9</name>
+        </hours>
+        <hours>
+            <empty>true</empty>
             <name>10</name>
         </hours>
         <hours>
@@ -54,8 +27,53 @@
             <name>12</name>
         </hours>
         <hours>
-            <empty>true</empty>
+            <activity_tag>
+                <name>tag1</name>
+            </activity_tag>
             <name>13</name>
+            <subject>chemistry</subject>
+            <teachers>
+                <name>teacher1</name>
+            </teachers>
+        </hours>
+        <name>Monday</name>
+    </days>
+    <days>
+        <hours>
+            <activity_tag>
+                <name>tag1</name>
+            </activity_tag>
+            <name>8</name>
+            <subject>physics</subject>
+            <teachers>
+                <name>teacher2</name>
+            </teachers>
+        </hours>
+        <hours>
+            <empty>true</empty>
+            <name>9</name>
+        </hours>
+        <hours>
+            <empty>true</empty>
+            <name>10</name>
+        </hours>
+        <hours>
+            <empty>true</empty>
+            <name>11</name>
+        </hours>
+        <hours>
+            <empty>true</empty>
+            <name>12</name>
+        </hours>
+        <hours>
+            <activity_tag>
+                <name>tag1</name>
+            </activity_tag>
+            <name>13</name>
+            <subject>physics</subject>
+            <teachers>
+                <name>teacher2</name>
+            </teachers>
         </hours>
         <name>Tuesday</name>
     </days>
@@ -65,42 +83,30 @@
             <name>8</name>
         </hours>
         <hours>
-            <empty>true</empty>
+            <activity_tag>
+                <name>tag1</name>
+            </activity_tag>
             <name>9</name>
+            <subject>maths</subject>
+            <teachers>
+                <name>teacher2</name>
+            </teachers>
         </hours>
         <hours>
             <empty>true</empty>
             <name>10</name>
         </hours>
         <hours>
-            <activity_tag>
-                <name>tag1</name>
-            </activity_tag>
+            <empty>true</empty>
             <name>11</name>
-            <subject>physics</subject>
-            <teachers>
-                <name>teacher2</name>
-            </teachers>
         </hours>
         <hours>
-            <activity_tag>
-                <name>tag1</name>
-            </activity_tag>
+            <empty>true</empty>
             <name>12</name>
-            <subject>chemistry</subject>
-            <teachers>
-                <name>teacher1</name>
-            </teachers>
         </hours>
         <hours>
-            <activity_tag>
-                <name>tag1</name>
-            </activity_tag>
+            <empty>true</empty>
             <name>13</name>
-            <subject>maths</subject>
-            <teachers>
-                <name>teacher2</name>
-            </teachers>
         </hours>
         <name>Wednesday</name>
     </days>
@@ -114,8 +120,14 @@
             <name>9</name>
         </hours>
         <hours>
-            <empty>true</empty>
+            <activity_tag>
+                <name>tag1</name>
+            </activity_tag>
             <name>10</name>
+            <subject>maths</subject>
+            <teachers>
+                <name>teacher2</name>
+            </teachers>
         </hours>
         <hours>
             <empty>true</empty>
@@ -126,16 +138,10 @@
             <name>12</name>
         </hours>
         <hours>
-            <activity_tag>
-                <name>tag1</name>
-            </activity_tag>
+            <empty>true</empty>
             <name>13</name>
-            <subject>physics</subject>
-            <teachers>
-                <name>teacher2</name>
-            </teachers>
         </hours>
         <name>Thursday</name>
     </days>
-    <name>2020 Automatic Group Automatic Subgroup</name>
+    <name>2019 Automatic Group Automatic Subgroup</name>
 </all>
