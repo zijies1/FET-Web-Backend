@@ -160,7 +160,7 @@ def test():
         root.append(val)
 
     # add compulsory constraints
-    compulsoryXml(root)
+    compulsoryXml(root, data)
     tree = xml.ElementTree(root)
     with open(f, "wb") as fh:
         tree.write(fh)
@@ -260,6 +260,9 @@ def fitDataToHtml(json):
         json["name"]: newData
     }
 
+"""
+ remove special symbols like @ which is not allowed to be stored in firebase
+"""
 def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
     result = []
     for subgroup in subgroups:
@@ -296,6 +299,13 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
     return result
 
 # hard coded
+"""
+@data: actual data e.g {"subject": "maths"}
+@attributes: tab name fitting .fet format e.g. ["Name", "Comments"]
+@values_dic: mapping from actual data to tab name e.g. {"subject":"Name"}
+@parentName: name of upper level tab name
+             e.g. <parentName><Name>maths</Name></parentName>
+"""
 def toSingleXml(data, attributes, values_dic, parentName):
     item = xml.Element(parentName)
     for attribute in attributes:
@@ -355,7 +365,10 @@ def activityToXml(data_list, parentXml):
                     item.append(xmlElement)
             parentXml.append(item)
 
-def compulsoryXml(root):
+"""
+ Add compulsory space and time constraints + preferred room constraints
+"""
+def compulsoryXml(root, data):
     parent_attributes = ["Time","Space"]
     attributes = ["Weight_Percentage","Active","Comments"]
     attributes_dic = {
@@ -371,4 +384,18 @@ def compulsoryXml(root):
             parentXml.append(xmlElement)
         upperParentXml = xml.Element(parent_attribute+"_Constraints_List")
         upperParentXml.append(parentXml)
+
+        # Add subejct's preferred room constraints
+        subject_attributes = ["Subject", "Room"]
+        values_dic = {"Subject" : "subject", "Room": "room"}
+        if(parent_attribute == "Space"):
+            for subject in data["subjects"]["data"]:
+                item = toSingleXml(
+                                    subject,
+                                    subject_attributes + attributes,
+                                    values_dic,
+                                    "ConstraintSubjectPreferredRoom"
+                                  )
+                upperParentXml.append(item)
+
         root.append(upperParentXml)
