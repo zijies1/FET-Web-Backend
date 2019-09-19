@@ -10,15 +10,19 @@ import os
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route('/', methods=['GET'])
-def hellof():
+@app.route('/printDir', methods=['GET'])
+def printDir():
    #print(os.getcwd())
     #os.system("fet-cl --inputfile=test1.fet")
-    print(os.system("tree . "))
+    # print(os.system("tree . "))
     #dir = os.getcwd()
     #print("currentDir => ")
-    print(os.getcwd())
-    return send_file("../timetables/test1/test1_activities.xml")
+    # print(os.getcwd())
+    return os.getcwd()
+
+@app.route('/', methods=['GET'])
+def hello():
+    return "hello"
 
 @app.route('/api/v1/exportTimetable', methods=['POST'])
 def exportTimetable():
@@ -63,7 +67,7 @@ def exportTimetable():
     return send_file("." + filePath)
 
 @app.route('/api/v1/test', methods=['POST'])
-def test():
+def generateTimetables():
     # print(request)
     if not request.json:
         return("error")
