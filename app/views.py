@@ -289,6 +289,11 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
                         newHour[unqiueAttributeNew] = [ {"name":x["@name"]} for x in hour[unqiueAttributeOld]]
                     except:
                         newHour[unqiueAttributeNew] = [ {"name":hour[unqiueAttributeOld]["@name"]}]
+                    try:
+                        newHour["room"] = [ {"name": hour["Room"]["@name"] }]
+                    except:
+                        newHour["room"] = []
+                        print("No rooms are being allocated")
                 hours.append(newHour)
             newDay = {
                 "name":day["@name"],
