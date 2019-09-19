@@ -73,7 +73,7 @@ def generateTimetables():
         return("error")
 
     data = request.json
-    # print(data)
+    print(data)
     f =  data["key"] + ".fet"
     root = xml.Element("fet", attrib={"version":"5.39.0"})
     children_dic = {
