@@ -16,4 +16,3 @@ def test_generateTimetables():
     )
 
     assert response.status_code == 200
-    assert response.data == b'hello'
