@@ -2,15 +2,15 @@
 
 The initial order of activities (id-s):
 
-No: 1, Id: 2, Teachers: teacher2, Subject: maths, Activity tags: tag1, Students: 2020
-No: 2, Id: 4, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2020
-No: 3, Id: 5, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2020
-No: 4, Id: 7, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2019
-No: 5, Id: 8, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2019
-No: 6, Id: 10, Teachers: teacher2, Subject: maths, Activity tags: tag1, Students: 2019
-No: 7, Id: 11, Teachers: teacher2, Subject: maths, Activity tags: tag1, Students: 2019
-No: 8, Id: 13, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2019
-No: 9, Id: 14, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2019
-No: 10, Id: 16, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2020
-No: 11, Id: 17, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2020
+No: 1, Id: 20, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2020
+No: 2, Id: 19, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2020
+No: 3, Id: 2, Teachers: teacher2, Subject: maths, Activity tags: tag1, Students: 2020
+No: 4, Id: 4, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2020
+No: 5, Id: 5, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2020
+No: 6, Id: 13, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2019
+No: 7, Id: 14, Teachers: teacher1, Subject: chemistry, Activity tags: tag1, Students: 2019
+No: 8, Id: 7, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2019
+No: 9, Id: 8, Teachers: teacher2, Subject: physics, Activity tags: tag1, Students: 2019
+No: 10, Id: 10, Teachers: teacher2, Subject: maths, Activity tags: tag1, Students: 2019
+No: 11, Id: 11, Teachers: teacher2, Subject: maths, Activity tags: tag1, Students: 2019
 End - the order of activities (id-s)

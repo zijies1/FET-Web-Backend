@@ -396,9 +396,10 @@ def compulsoryXml(root, data):
 
         # Add subejct's preferred room constraints
         subject_attributes = ["Subject", "Room"]
-        values_dic = {"Subject" : "subject", "Room": "room"}
+        values_dic = {"Subject" : "subject", "Room": "room", "Weight_Percentage": "weight"}
         if(parent_attribute == "Space"):
             for subject in data["subjects"]["data"]:
+                subject["weight"] = "50"
                 item = toSingleXml(
                                     subject,
                                     subject_attributes + attributes,
