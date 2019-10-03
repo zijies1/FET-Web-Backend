@@ -159,13 +159,13 @@ def generateTimetables():
           children_dic["Rooms_List"])
 
 	#  Activities_List
-    activityxmlGenerator.toXml(data["activities"]["data"], children_dic["Activities_List"])
+    xmlGenerator.activityToXml(data["activities"]["data"], children_dic["Activities_List"])
 
     for key, val in children_dic.items():
         root.append(val)
 
     # add compulsory constraints
-    xmlGenerator.compulsoryXml(root, data)
+    xmlGenerator.compulsoryXml(root, data["subjects"]["data"])
     tree = xml.ElementTree(root)
     with open(f, "wb") as fh:
         tree.write(fh)

@@ -91,7 +91,7 @@ def compulsoryXml(root, data):
         subject_attributes = ["Subject", "Room"]
         values_dic = {"Subject" : "subject", "Room": "room", "Weight_Percentage": "weight"}
         if(parent_attribute == "Space"):
-            for subject in data["subjects"]["data"]:
+            for subject in data:
                 subject["weight"] = "50"
                 item = toSingleXml(
                                     subject,
