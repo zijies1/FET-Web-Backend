@@ -12,3 +12,5 @@ sudo docker kill $(sudo docker ps -q) && sudo docker rm $(sudo docker ps -a -q) 
 
 #restart
 sudo docker stop fet-api && sudo docker start fet-api
+
+gcloud compute ssh instance-2
