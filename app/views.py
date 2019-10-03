@@ -6,6 +6,7 @@ from json2xml import json2xml, readfromstring
 from json2html import *
 from json import dumps
 from app import app
+from app import xmlGenerator
 import os
 
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -116,55 +117,55 @@ def generateTimetables():
         children_dic["Hours_List"].append(item)
 
 	# Subjects_List
-    toXml(data["subjects"]["data"],
+    xmlGenerator.toXml(data["subjects"]["data"],
           ["Name", "Comments"],
           { "Name": "subject"},
           "Subject",
           children_dic["Subjects_List"])
 
 	# Activity_Tags_List
-    toXml(data["tags"]["data"],
+    xmlGenerator.toXml(data["tags"]["data"],
           ["Name", "Printable", "Comments"],
           { "Name": "tag"},
           "Activity_Tag",
           children_dic["Activity_Tags_List"])
 
 	#  Teachers_List
-    toXml(data["teachers"]["data"],
+    xmlGenerator.toXml(data["teachers"]["data"],
           ["Name", "Target_Number_of_Hours", "Qualified_Subjects", "Comments"],
           { "Name": "teacher", "Target_Number_of_Hours": "targetNumberOfHours"},
           "Teacher",
           children_dic["Teachers_List"])
 
 	# Students_List
-    toXml(data["students"]["data"],
+    xmlGenerator.toXml(data["students"]["data"],
           ["Name", "Number_of_students", "Comments"],
           { "Name": "students", "Number_of_students": "number"},
           "Year",
           children_dic["Students_List"])
 
 	#  Buildings_List
-    toXml(data["buildings"]["data"],
+    xmlGenerator.toXml(data["buildings"]["data"],
           ["Name", "Comments"],
           { "Name": "building" },
           "Building",
           children_dic["Buildings_List"])
 
 	#  Rooms_List
-    toXml(data["rooms"]["data"],
+    xmlGenerator.toXml(data["rooms"]["data"],
           ["Name", "Building", "Capacity", "Comments"],
           { "Name": "room", "Building": "building", "Capacity": "capacity"},
           "Room",
           children_dic["Rooms_List"])
 
 	#  Activities_List
-    activityToXml(data["activities"]["data"], children_dic["Activities_List"])
+    activityxmlGenerator.toXml(data["activities"]["data"], children_dic["Activities_List"])
 
     for key, val in children_dic.items():
         root.append(val)
 
     # add compulsory constraints
-    compulsoryXml(root, data)
+    xmlGenerator.compulsoryXml(root, data)
     tree = xml.ElementTree(root)
     with open(f, "wb") as fh:
         tree.write(fh)
@@ -306,106 +307,3 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
         }
         result.append(newSubgroup)
     return result
-
-# hard coded
-"""
-@data: actual data e.g {"subject": "maths"}
-@attributes: tab name fitting .fet format e.g. ["Name", "Comments"]
-@values_dic: mapping from actual data to tab name e.g. {"subject":"Name"}
-@parentName: name of upper level tab name
-             e.g. <parentName><Name>maths</Name></parentName>
-"""
-def toSingleXml(data, attributes, values_dic, parentName):
-    item = xml.Element(parentName)
-    for attribute in attributes:
-        xmlElement = xml.Element(attribute)
-        if attribute in values_dic:
-            xmlElement.text = str(data[values_dic[attribute]])
-        item.append(xmlElement)
-    return item
-
-def toXml(data_list, attributes, values_dic, parentName, parentXml):
-    for data in data_list:
-        item = toSingleXml(data, attributes, values_dic, parentName)
-        if "children" in data:
-            for child_data in data["children"]:
-                child_item = toSingleXml(child_data, attributes, values_dic, "Group")
-                item.append(child_item)
-        parentXml.append(item)
-
-def activityToXml(data_list, parentXml):
-    mutltiple_attributes = ["Activity_Tag", "Students", "Teacher"]
-    child_attributes = ["Duration","Id", "Active", "Comments"]
-    parent_attributes = ["Subject", "TotalDuration", "Activity_Group_Id"]
-    mutltiple_attributes_dic = {
-        "Activity_Tag": "tags",
-        "Students": "students",
-        "Teacher": "teachers",
-    }
-    mutltiple_attributes_dic2 = {
-        "Activity_Tag": "tag",
-        "Students": "students",
-        "Teacher": "teacher",
-    }
-    child_attributes_dic = {
-        "Duration": "duration",
-        "Id": "key",
-        "Active": "active",
-    }
-    parent_attributes_dic = {
-        "Subject": "subject",
-        "TotalDuration": "totalDuration",
-        "Activity_Group_Id": "key"
-    }
-
-    for data in data_list:
-        for child in data["children"]:
-            item = toSingleXml(data, parent_attributes, parent_attributes_dic, "Activity")
-            for attribute in child_attributes:
-                xmlElement = xml.Element(attribute)
-                if attribute in child_attributes_dic:
-                    xmlElement.text = str(child[child_attributes_dic[attribute]])
-                item.append(xmlElement)
-
-            for attribute in mutltiple_attributes:
-                for element in data[mutltiple_attributes_dic[attribute]]:
-                    xmlElement = xml.Element(attribute)
-                    xmlElement.text = str(element[mutltiple_attributes_dic2[attribute ]])
-                    item.append(xmlElement)
-            parentXml.append(item)
-
-"""
- Add compulsory space and time constraints + preferred room constraints
-"""
-def compulsoryXml(root, data):
-    parent_attributes = ["Time","Space"]
-    attributes = ["Weight_Percentage","Active","Comments"]
-    attributes_dic = {
-        "Weight_Percentage":"100",
-        "Active":"true",
-    }
-    for parent_attribute in parent_attributes:
-        parentXml = xml.Element("ConstraintBasicCompulsory"+parent_attribute)
-        for attribute in attributes:
-            xmlElement = xml.Element(attribute)
-            if attribute in attributes_dic:
-                xmlElement.text = attributes_dic[attribute]
-            parentXml.append(xmlElement)
-        upperParentXml = xml.Element(parent_attribute+"_Constraints_List")
-        upperParentXml.append(parentXml)
-
-        # Add subejct's preferred room constraints
-        subject_attributes = ["Subject", "Room"]
-        values_dic = {"Subject" : "subject", "Room": "room", "Weight_Percentage": "weight"}
-        if(parent_attribute == "Space"):
-            for subject in data["subjects"]["data"]:
-                subject["weight"] = "50"
-                item = toSingleXml(
-                                    subject,
-                                    subject_attributes + attributes,
-                                    values_dic,
-                                    "ConstraintSubjectPreferredRoom"
-                                  )
-                upperParentXml.append(item)
-
-        root.append(upperParentXml)
