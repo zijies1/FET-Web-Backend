@@ -1,4 +1,8 @@
+"""
+ modify data based on order list
+"""
 def fitOrderToData(json):
+    print("fitOrderToData", json)
     data = json["data"]
     # print(data)
     # print(hourNames)
@@ -41,7 +45,11 @@ def fitOrderToData(json):
     # print(result)
     return result
 
+"""
+ fit data into html convertale format
+"""
 def fitDataToHtml(json):
+    print("fitDataToHtml", json)
     days = json["days"]
     numOfHours = len(days[0]["hours"])
     newData = []
@@ -71,7 +79,6 @@ def fitDataToHtml(json):
  remove special symbols like @ which is not allowed to be stored in firebase
 """
 def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
-    # print("subgroups",subgroups, unqiueAttributeNew, unqiueAttributeOld)
     result = []
     for subgroup in subgroups:
         days = []
@@ -109,5 +116,4 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
             "days":days
         }
         result.append(newSubgroup)
-    print(result)
     return result
