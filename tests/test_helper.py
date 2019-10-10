@@ -50,7 +50,7 @@ def test_fitDataToHtml():
     expectedDataList = expectedResultData['2019 Automatic Group Automatic Subgroup']
 
     assert len(testDataList) == len(expectedDataList)
-    assert testDataList[0] in expectedDataList
+    assert testDataList[0].keys() == expectedDataList[0].keys()
 
 """
  testing function which will order data based on an order list
