@@ -50,9 +50,7 @@ def test_fitDataToHtml():
     expectedStrData = [json.dumps(data) for data in expectedResultData['2019 Automatic Group Automatic Subgroup']]
     testStrData = [json.dumps(data) for data in testDataList]
     for testData in testStrData:
-        if(not testData in expectedStrData):
-            print(testData)
-        # assert testData in expectedResultData['2019 Automatic Group Automatic Subgroup']
+        assert testData in expectedStrData
 
 """
  testing function which will order data based on an order list
