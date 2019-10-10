@@ -49,6 +49,5 @@ def test_fet():
         assert testResultStudent[0]['days'][0]['hours'][1]['name'] == 9
         assert testResultStudent[0]['days'][0]['hours'][2]['name'] == 10
         assert testResultStudent[0]['days'][0]['hours'][3]['name'] == 11
-        # assert testResultStudent[0]['days'][0]['hours'][0]['subject'] == "physics"
 
     stdoutdata = subprocess.getoutput("sudo rm -rf ./timetables/test")
