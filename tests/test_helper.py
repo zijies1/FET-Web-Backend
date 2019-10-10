@@ -47,10 +47,10 @@ def test_fitDataToHtml():
     testResultData = helper.fitDataToHtml(fitDataToHtmlTestData)
     expectedResultData = expectedResultFitDataToHtml()
     testDataList = testResultData['2019 Automatic Group Automatic Subgroup']
-    expectedStrData = [json.dumps(data) for data in expectedResultData['2019 Automatic Group Automatic Subgroup']]
-    testStrData = [json.dumps(data) for data in testDataList]
-    for testData in testStrData:
-        assert testData in expectedStrData
+    expectedDataList = expectedResultData['2019 Automatic Group Automatic Subgroup']
+
+    assert len(testDataList) == len(expectedDataList)
+    assert testDataList[0] in expectedDataList
 
 """
  testing function which will order data based on an order list
