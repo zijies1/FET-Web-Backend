@@ -1,6 +1,5 @@
 from app import helper
 from testData import subgroupTeacher,subgroupStudent,fitOrderToDataTestData,fitDataToHtmlTestData
-import random
 
 def assertObejct(testResult, expectedResult, attribute):
     for i in range(len(testResult)):
@@ -16,6 +15,7 @@ def assertObejct(testResult, expectedResult, attribute):
                     assert testData["subject"] == expectedData["subject"]
                 if("room" in testData):
                     assert testData["room"] == expectedData["room"]
+
 
 def expectedResultTeacher():
     return [{'name': 'teacher1', 'days': [{'name': 'Monday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'subject': 'chemistry', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2019}], 'room': [{'name': 'B101'}]}, {'name': 10, 'empty': 'true'}, {'name': 11, 'empty': 'true'}, {'name': 12, 'empty': 'true'}, {'name': 13, 'empty': 'true'}]}, {'name': 'Tuesday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'empty': 'true'}, {'name': 10, 'subject': 'chemistry', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2020}], 'room': [{'name': 'B101'}]}, {'name': 11, 'empty': 'true'}, {'name': 12, 'empty': 'true'}, {'name': 13, 'empty': 'true'}]}, {'name': 'Wednesday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'empty': 'true'}, {'name': 10, 'empty': 'true'}, {'name': 11, 'empty': 'true'}, {'name': 12, 'empty': 'true'}, {'name': 13, 'empty': 'true'}]}, {'name': 'Thursday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'empty': 'true'}, {'name': 10, 'empty': 'true'}, {'name': 11, 'empty': 'true'}, {'name': 12, 'subject': 'chemistry', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2019}], 'room': [{'name': 'B101'}]}, {'name': 13, 'subject': 'chemistry', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2020}], 'room': [{'name': 'B101'}]}]}]}, {'name': 'teacher2', 'days': [{'name': 'Monday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'empty': 'true'}, {'name': 10, 'subject': 'maths', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2020}], 'room': [{'name': 'B101'}]}, {'name': 11, 'subject': 'maths', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2019}], 'room': [{'name': 'B101'}]}, {'name': 12, 'empty': 'true'}, {'name': 13, 'subject': 'physics', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2020}], 'room': [{'name': 'A101'}]}]}, {'name': 'Tuesday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'empty': 'true'}, {'name': 10, 'empty': 'true'}, {'name': 11, 'subject': 'physics', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2020}], 'room': [{'name': 'A101'}]}, {'name': 12, 'empty': 'true'}, {'name': 13, 'empty': 'true'}]}, {'name': 'Wednesday', 'hours': [{'name': 8, 'empty': 'true'}, {'name': 9, 'empty': 'true'}, {'name': 10, 'subject': 'physics', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2019}], 'room': [{'name': 'A101'}]}, {'name': 11, 'empty': 'true'}, {'name': 12, 'empty': 'true'}, {'name': 13, 'subject': 'maths', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2019}], 'room': [{'name': 'B101'}]}]}, {'name': 'Thursday', 'hours': [{'name': 8, 'subject': 'physics', 'activity_tag': [{'name': 'tag1'}], 'students': [{'name': 2019}], 'room': [{'name': 'A101'}]}, {'name': 9, 'empty': 'true'}, {'name': 10, 'empty': 'true'}, {'name': 11, 'empty': 'true'}, {'name': 12, 'empty': 'true'}, {'name': 13, 'empty': 'true'}]}]}]
@@ -44,7 +44,10 @@ def test_beautifyDays():
 """
 def test_fitDataToHtml():
     testResultData = helper.fitDataToHtml(fitDataToHtmlTestData)
-    assert testResultData == expectedResultFitDataToHtml()
+    expectedResultData = expectedResultFitDataToHtml()
+    testDataList = testResultData['2019 Automatic Group Automatic Subgroup']
+    for testData in testDataList:
+        assert testData in expectedResultData['2019 Automatic Group Automatic Subgroup']
 
 """
  testing function which will order data based on an order list
