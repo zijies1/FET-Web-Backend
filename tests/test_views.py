@@ -1,6 +1,7 @@
 from app import app
 from flask import json
 from testData import rawTimetableData
+import xml.etree.ElementTree as xml
 import subprocess
 from xmljson import badgerfish as bf
 
