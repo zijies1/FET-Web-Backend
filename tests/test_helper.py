@@ -47,7 +47,7 @@ def test_fitDataToHtml():
     expectedResultData = expectedResultFitDataToHtml()
     testDataList = testResultData['2019 Automatic Group Automatic Subgroup']
     for testData in testDataList:
-        if(not testData in expectedResultData['2019 Automatic Group Automatic Subgroup'])
+        if(not testData in expectedResultData['2019 Automatic Group Automatic Subgroup']):
             print(testData)
         # assert testData in expectedResultData['2019 Automatic Group Automatic Subgroup']
 
