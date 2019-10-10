@@ -2,6 +2,7 @@ from app import app
 from flask import json
 from testData import rawTimetableData
 import subprocess
+from xmljson import badgerfish as bf
 
 
 """
