@@ -2,7 +2,6 @@
  modify data based on order list
 """
 def fitOrderToData(json):
-    print("fitOrderToData", json)
     data = json["data"]
     # print(data)
     # print(hourNames)
@@ -49,7 +48,6 @@ def fitOrderToData(json):
  fit data into html convertale format
 """
 def fitDataToHtml(json):
-    print("fitDataToHtml", json)
     days = json["days"]
     numOfHours = len(days[0]["hours"])
     newData = []
