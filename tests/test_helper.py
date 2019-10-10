@@ -1,5 +1,6 @@
 from app import helper
 from testData import subgroupTeacher,subgroupStudent,fitOrderToDataTestData,fitDataToHtmlTestData
+import json
 
 def assertObejct(testResult, expectedResult, attribute):
     for i in range(len(testResult)):
@@ -46,8 +47,10 @@ def test_fitDataToHtml():
     testResultData = helper.fitDataToHtml(fitDataToHtmlTestData)
     expectedResultData = expectedResultFitDataToHtml()
     testDataList = testResultData['2019 Automatic Group Automatic Subgroup']
-    for testData in testDataList:
-        if(not testData in expectedResultData['2019 Automatic Group Automatic Subgroup']):
+    expectedStrData = [json.dumps(data) for data in expectedResultData['2019 Automatic Group Automatic Subgroup']]
+    testStrData = [json.dumps(data) for data in testDataList]
+    for testData in testStrData:
+        if(not testData in expectedStrData):
             print(testData)
         # assert testData in expectedResultData['2019 Automatic Group Automatic Subgroup']
 
