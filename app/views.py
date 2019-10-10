@@ -181,7 +181,7 @@ def generateTimetables():
     with open(prefix + "subgroups.xml", "r") as fh:
         # print fh.read()
         tmp = bf.data(xml.fromstring(fh.read()))
-        print(tmp["Students_Timetable"]["Subgroup"])
+        # print(tmp["Students_Timetable"]["Subgroup"])
         body["subgroups"] = helper.beautifyDays(tmp["Students_Timetable"]["Subgroup"], "teachers", "Teacher")
         # print(helper.beautifyDays(tmp["Students_Timetable"]["Subgroup"], "teachers", "Teacher"))
 

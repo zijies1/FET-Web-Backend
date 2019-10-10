@@ -71,7 +71,7 @@ def fitDataToHtml(json):
  remove special symbols like @ which is not allowed to be stored in firebase
 """
 def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
-    print("subgroups",subgroups, unqiueAttributeNew, unqiueAttributeOld)
+    # print("subgroups",subgroups, unqiueAttributeNew, unqiueAttributeOld)
     result = []
     for subgroup in subgroups:
         days = []
@@ -83,7 +83,7 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
                 if(not "Subject" in hour):
                     newHour["empty"] = "true"
                 else:
-                    print(hour)
+                    # print(hour)
                     newHour["subject"] = hour["Subject"]["@name"]
                     try:
                         newHour["activity_tag"] = [ {"name": hour["Activity_Tag"]["@name"]} ]
@@ -109,4 +109,5 @@ def beautifyDays(subgroups, unqiueAttributeNew, unqiueAttributeOld):
             "days":days
         }
         result.append(newSubgroup)
+    print(result)
     return result
