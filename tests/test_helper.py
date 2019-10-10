@@ -14,7 +14,7 @@ def assertObejct(testResult, expectedResult, attribute):
                     try:
                         assert testData[attribute] == expectedData[attribute]
                     except:
-                        print(testData,expectedData)
+                        print(testData,expectedData,testData[attribute])
                 if("subject" in testData):
                     assert testData["subject"] == expectedData["subject"]
                 if("room" in testData):
