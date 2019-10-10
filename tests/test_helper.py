@@ -11,7 +11,10 @@ def assertObejct(testResult, expectedResult, attribute):
                 testData = testResult[i]["days"][j]["hours"][k]
                 expectedData = expectedResult[i]["days"][j]["hours"][k]
                 if(attribute in testData):
-                    assert testData[attribute] == expectedData[attribute]
+                    try:
+                        assert testData[attribute] == expectedData[attribute]
+                    except:
+                        print(testData,expectedData,testData[attribute])
                 if("subject" in testData):
                     assert testData["subject"] == expectedData["subject"]
                 if("room" in testData):
