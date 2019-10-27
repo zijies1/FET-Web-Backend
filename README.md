@@ -9,7 +9,11 @@ IMPORTANT NOTE: FET command line version is not avaible on MacOS or Windows syst
 ## How to run:
 ```
 git clone https://github.com/zijies1/FET-Web-Backend
-cd src
+cd FET-Web-Backend
 pip3 install -r requirements.txt
 python3 main.py
 ```
+
+## How to test:
+open you terminal and do ``` curl http://127.0.0.1:5000/ ```
+"hello" should be returned
