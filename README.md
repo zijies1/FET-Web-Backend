@@ -13,7 +13,11 @@ cd FET-Web-Backend
 pip3 install -r requirements.txt
 python3 main.py
 ```
+open you terminal and do ``` curl http://127.0.0.1:5000/ ``` "hello" should be returned
 
 ## How to test:
-open you terminal and do ``` curl http://127.0.0.1:5000/ ```
-"hello" should be returned
+```
+pip install -U pytest
+pytest -m
+```
+
