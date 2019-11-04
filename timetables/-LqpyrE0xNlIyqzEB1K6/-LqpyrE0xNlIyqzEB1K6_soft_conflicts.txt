@@ -1,0 +1,10 @@
+﻿Soft conflicts of -LqpyrE0xNlIyqzEB1K6.fet
+Generated with FET 5.35.5 on 10/19/19 1:23 AM
+
+Number of broken soft constraints: 0
+Total soft conflicts: 0
+
+Soft conflicts list (in decreasing order):
+
+
+End of file.

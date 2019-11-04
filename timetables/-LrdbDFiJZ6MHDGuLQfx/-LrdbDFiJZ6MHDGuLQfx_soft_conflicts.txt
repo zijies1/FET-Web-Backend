@@ -1,0 +1,10 @@
+﻿Soft conflicts of -LrdbDFiJZ6MHDGuLQfx.fet
+Generated with FET 5.35.5 on 10/20/19 2:43 PM
+
+Number of broken soft constraints: 0
+Total soft conflicts: 0
+
+Soft conflicts list (in decreasing order):
+
+
+End of file.

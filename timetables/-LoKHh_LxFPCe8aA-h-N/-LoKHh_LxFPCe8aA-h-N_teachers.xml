@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Teachers_Timetable>
+  <Teacher name="teacher1">
+   <Day name="Monday">
+    <Hour name="9">
+     
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+   </Day>
+   <Day name="Tuesday">
+    <Hour name="9">
+     
+    </Hour>
+    <Hour name="10">
+     <Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="B101"></Room>
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+   </Day>
+   <Day name="Wednesday">
+    <Hour name="9">
+     
+    </Hour>
+    <Hour name="10">
+     <Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="B101"></Room>
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+   </Day>
+   <Day name="Thursday">
+    <Hour name="9">
+     
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+   </Day>
+  </Teacher>
+  <Teacher name="teacher2">
+   <Day name="Monday">
+    <Hour name="9">
+     <Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="B101"></Room>
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+   </Day>
+   <Day name="Tuesday">
+    <Hour name="9">
+     <Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2019"></Students><Room name="B101"></Room>
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     <Subject name="physics"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2019"></Students><Room name="A101"></Room>
+    </Hour>
+   </Day>
+   <Day name="Wednesday">
+    <Hour name="9">
+     <Subject name="physics"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2019"></Students><Room name="A101"></Room>
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     <Subject name="physics"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="A101"></Room>
+    </Hour>
+   </Day>
+   <Day name="Thursday">
+    <Hour name="9">
+     <Subject name="physics"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="A101"></Room>
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     <Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2019"></Students><Room name="B101"></Room>
+    </Hour>
+   </Day>
+  </Teacher>
+</Teachers_Timetable>

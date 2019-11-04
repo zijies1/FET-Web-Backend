@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Students_Timetable>
+  <Subgroup name="year 2010 Automatic Group Automatic Subgroup">
+   <Day name="Monday">
+    <Hour name="9">
+      <Teacher name="teacher2"></Teacher><Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="B101"></Room>
+    </Hour>
+    <Hour name="10">
+      <Teacher name="teacher1"></Teacher><Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="A101"></Room>
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+    <Hour name="12">
+     
+    </Hour>
+   </Day>
+   <Day name="Tuesday">
+    <Hour name="9">
+      <Teacher name="teacher1"></Teacher><Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="A101"></Room>
+    </Hour>
+    <Hour name="10">
+      <Teacher name="teacher2"></Teacher><Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="B101"></Room>
+    </Hour>
+    <Hour name="11">
+      <Teacher name="teacher1"></Teacher><Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="A101"></Room>
+    </Hour>
+    <Hour name="12">
+     
+    </Hour>
+   </Day>
+   <Day name="Wednesday">
+    <Hour name="9">
+     
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+    <Hour name="12">
+     
+    </Hour>
+   </Day>
+  </Subgroup>
+  <Subgroup name="year 2011 Automatic Group Automatic Subgroup">
+   <Day name="Monday">
+    <Hour name="9">
+     
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+    <Hour name="12">
+      <Teacher name="teacher1"></Teacher><Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="A101"></Room>
+    </Hour>
+   </Day>
+   <Day name="Tuesday">
+    <Hour name="9">
+      <Teacher name="teacher2"></Teacher><Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="B101"></Room>
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+     
+    </Hour>
+    <Hour name="12">
+     
+    </Hour>
+   </Day>
+   <Day name="Wednesday">
+    <Hour name="9">
+      <Teacher name="teacher2"></Teacher><Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="B101"></Room>
+    </Hour>
+    <Hour name="10">
+     
+    </Hour>
+    <Hour name="11">
+      <Teacher name="teacher1"></Teacher><Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Room name="A101"></Room>
+    </Hour>
+    <Hour name="12">
+     
+    </Hour>
+   </Day>
+  </Subgroup>
+</Students_Timetable>

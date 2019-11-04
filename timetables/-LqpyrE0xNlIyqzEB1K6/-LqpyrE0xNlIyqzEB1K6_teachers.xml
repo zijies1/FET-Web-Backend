@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Teachers_Timetable>
+  <Teacher name="teacher1">
+   <Day name="Wednesday">
+    <Hour name="8">
+     
+    </Hour>
+    <Hour name="9">
+     <Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="A103"></Room>
+    </Hour>
+   </Day>
+   <Day name="Tuesday">
+    <Hour name="8">
+     
+    </Hour>
+    <Hour name="9">
+     
+    </Hour>
+   </Day>
+   <Day name="Monday">
+    <Hour name="8">
+     <Subject name="maths"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2019"></Students><Room name="A103"></Room>
+    </Hour>
+    <Hour name="9">
+     
+    </Hour>
+   </Day>
+  </Teacher>
+  <Teacher name="teacher2">
+   <Day name="Wednesday">
+    <Hour name="8">
+     <Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2020"></Students><Room name="A101"></Room>
+    </Hour>
+    <Hour name="9">
+     
+    </Hour>
+   </Day>
+   <Day name="Tuesday">
+    <Hour name="8">
+     
+    </Hour>
+    <Hour name="9">
+     <Subject name="chemistry"></Subject><Activity_Tag name="tag1"></Activity_Tag><Students name="2019"></Students><Room name="A101"></Room>
+    </Hour>
+   </Day>
+   <Day name="Monday">
+    <Hour name="8">
+     
+    </Hour>
+    <Hour name="9">
+     
+    </Hour>
+   </Day>
+  </Teacher>
+</Teachers_Timetable>
