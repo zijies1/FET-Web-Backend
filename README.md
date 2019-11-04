@@ -17,7 +17,9 @@ open you terminal and do ``` curl http://127.0.0.1:5000/ ``` "hello" should be r
 
 ## How to test:
 ```
-pip install -U pytest
+pip3 install -U pytest
 pytest -m
+## or 
+python3 -m pytest
 ```
 
