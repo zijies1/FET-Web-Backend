@@ -1,16 +1,28 @@
 # FET-Web-Backend
 
-cd src
-virtualenv venv
+IMPORTANT NOTE: FET command line version is not avaible on MacOS or Windows systems. Therefore, running this backend on non-linux system machines may not have full functionalities.
+
+## Prequesites:
+1. You need to install fet-cl by the corresponding command listed here https://command-not-found.com/fet-cl.
+2. Ensure Python3 is installed on your machine
+
+## How to run:
+```
+git clone https://github.com/zijies1/FET-Web-Backend.git
+cd FET-Web-Backend
 pip3 install -r requirements.txt
-export FlASK_APP=main.py
+python3 main.py
+```
+open you terminal and do ``` curl http://127.0.0.1:5000/ ``` "hello" should be returned
 
-gcloud compute ssh instance-1
+## How to test:
+```
+pip3 install -U pytest
+pytest -m
+```
+or
 
-#kill all containers and images
-sudo docker kill $(sudo docker ps -q) && sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -q)
+```
+python3 -m pytest
+```
 
-#restart
-sudo docker stop fet-api && sudo docker start fet-api
-
-gcloud compute ssh instance-2
