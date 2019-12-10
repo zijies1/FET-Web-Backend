@@ -2,6 +2,9 @@
 
 IMPORTANT NOTE: FET command line version is not avaible on MacOS or Windows systems. Therefore, running this backend on non-linux system machines may not have full functionalities.
 
+## Link for detailed Report of this project:
+https://docs.google.com/document/d/1XYhdxybL5Uc96Ad8zwifnDJRVZPwwnvtO0xMurRwyag/edit?usp=sharing
+
 ## Prequesites:
 1. You need to install fet-cl by the corresponding command listed here https://command-not-found.com/fet-cl.
 2. Ensure Python3 is installed on your machine
