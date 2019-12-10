@@ -2,7 +2,7 @@
 
 IMPORTANT NOTE: FET command line version is not avaible on MacOS or Windows systems. Therefore, running this backend on non-linux system machines may not have full functionalities.
 
-## Link for detailed Report of this project:
+## Link of detailed report for this project:
 https://docs.google.com/document/d/1XYhdxybL5Uc96Ad8zwifnDJRVZPwwnvtO0xMurRwyag/edit?usp=sharing
 
 ## Prequesites:
